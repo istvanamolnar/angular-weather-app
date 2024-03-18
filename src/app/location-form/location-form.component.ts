@@ -5,12 +5,16 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { formatDate } from '@angular/common';
 import { createDateValidator } from '../../utils/date-validator';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { fetchWeatherData } from '../../services/fetch-weather-data';
+// import { map } from 'rxjs';
 
 @Component({
   selector: 'app-location-form',
   standalone: true,
   imports: [
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -22,6 +26,7 @@ import { createDateValidator } from '../../utils/date-validator';
 })
 
 export class LocationFormComponent {
+  constructor(private http: HttpClient) {}
   // @ViewChild('f') form: NgForm = new NgForm([], []);\
 
   dateAsString = formatDate(new Date(), 'dd.MM.yyyy', 'en');
@@ -31,9 +36,16 @@ export class LocationFormComponent {
     date: new FormControl(this.dateAsString, [Validators.required, createDateValidator()]),
   });
 
-  onSubmit = () => {
+  onSubmit = async () => {
     if (this.formData.valid) {
-      console.log(this.formData);
+      (await fetchWeatherData(this.http, this.formData.value.location))
+        // .pipe(map(data => {
+        //   data.forecast.forecastday
+        // }))
+        .subscribe(res => {
+        console.log(res);
+      });
+      
     }
   }
 }
