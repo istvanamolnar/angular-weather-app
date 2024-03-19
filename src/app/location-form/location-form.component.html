@@ -1,27 +1,17 @@
-<main>
-  <div class="locationInputWrapper">
-    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
-      <mat-form-field>
+<div class="locationInputWrapper">
+  <form [formGroup]="formData" (ngSubmit)="onSubmit()" class="form">
+    <div class="inputs">
+      <mat-form-field class="formField">
         <mat-label>Enter a location: </mat-label>
         <input matInput type="text" placeholder="London" formControlName="location">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="formField">
         <mat-label>Enter a date: </mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="18.03.2024"
-          formControlName="date"
-        >
+        <input matInput type="text" placeholder="18.03.2024" formControlName="date">
       </mat-form-field>
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="!formData.valid"
-      >
-        Submit
-      </button>
-    </form>
-  </div>
-</main>
+    </div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!formData.valid">
+      Submit
+    </button>
+  </form>
+</div>

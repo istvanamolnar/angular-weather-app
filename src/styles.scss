@@ -10,5 +10,7 @@ $app-theme: mat.define-light-theme((
 
 @include mat.all-component-themes($app-theme);
 
-html, body { height: 100%; }
-body { margin: 0; }
+html, body { height: 100%; width: 100%; overflow: hidden; }
+body {
+  margin: 0;
+}

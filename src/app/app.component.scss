@@ -1,3 +1,44 @@
+
 .main {
-  padding: 30px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+  .app-wrapper {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    position: relative;
+    margin-top: 80px;
+    margin-bottom: 80px;
+
+    width: min(600px, 80%);
+    opacity: 0.8;
+    z-index: 1;
+  }
+  .location-form {
+    width: 100%;
+  }
+  .background-image-holder {
+    background-image: url('https://raw.githubusercontent.com/arena-challenges/angular-weather-app/main/docs/weather-app-angular_small.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 250dvh;
+    aspect-ratio: 1/1;
+    top: 50%;
+    left: 50%;
+    opacity: 0.6;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+
+  h1 {
+    z-index: 1;
+  }
+
 }
