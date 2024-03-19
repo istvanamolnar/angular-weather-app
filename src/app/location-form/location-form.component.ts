@@ -7,7 +7,6 @@ import { formatDate } from '@angular/common';
 import { createDateValidator } from '../../utils/date-validator';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { fetchWeatherData } from '../../services/fetch-weather-data';
-// import { map } from 'rxjs';
 
 @Component({
   selector: 'app-location-form',
@@ -26,8 +25,8 @@ import { fetchWeatherData } from '../../services/fetch-weather-data';
 })
 
 export class LocationFormComponent {
+  // @ViewChild('f') form: NgForm = new NgForm([], []);
   constructor(private http: HttpClient) {}
-  // @ViewChild('f') form: NgForm = new NgForm([], []);\
 
   dateAsString = formatDate(new Date(), 'dd.MM.yyyy', 'en');
 
@@ -38,14 +37,11 @@ export class LocationFormComponent {
 
   onSubmit = async () => {
     if (this.formData.valid) {
-      (await fetchWeatherData(this.http, this.formData.value.location))
-        // .pipe(map(data => {
-        //   data.forecast.forecastday
-        // }))
+      const { date, location } = this.formData.value;
+      (await fetchWeatherData(this.http, location, date))
         .subscribe(res => {
-        console.log(res);
-      });
-      
+          console.log(res);
+        });
     }
   }
 }
