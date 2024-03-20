@@ -1,10 +1,13 @@
 <main class="main">
   <div class="app-wrapper">
     <h1>Weather App</h1>
-    <app-location-form class="location-form"/>
+    <location-form class="location-form"/>
     <mat-spinner *ngIf="isLoading$ | async" class="spinner"></mat-spinner>
     <div *ngIf="errorMessage$ | async" class="error-message">{{errorMessage$ | async}}</div>
-    <app-daily-weather class="daily-weather"/>
+    <div>
+      <daily-weather-card class="daily-weather"/>
+      <forecast />
+    </div>
   </div>
   <div class="background-image-holder"></div>
 </main>

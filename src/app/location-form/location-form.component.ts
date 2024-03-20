@@ -12,10 +12,9 @@ import { createDateValidator } from '../../utils/date-validator';
 import { fetchWeatherData } from '../../services/fetch-weather-data';
 
 import { setErrorMessage, setIsLoading, setWeatherData } from '../store/weather.actions';
-import { error } from 'console';
 
 @Component({
-  selector: 'app-location-form',
+  selector: 'location-form',
   standalone: true,
   imports: [
     FormsModule,
@@ -53,8 +52,8 @@ export class LocationFormComponent {
       (await fetchWeatherData(this.http, location, date))
         .subscribe({
           next: (res) => {
-            console.log(JSON.stringify(res.location));
-            
+            console.log(JSON.stringify(res.forecast));
+
             this.store.dispatch(setWeatherData(res));
           },
           error: (e) => {

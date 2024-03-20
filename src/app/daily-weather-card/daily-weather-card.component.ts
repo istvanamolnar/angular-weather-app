@@ -12,7 +12,7 @@ import IWeatherStore from '../../interfaces/IWeatherStore';
 import ILocationData from '../../interfaces/ILocationData';
 
 @Component({
-  selector: 'app-daily-weather',
+  selector: 'daily-weather-card',
   standalone: true,
   imports: [
     AsyncPipe,
@@ -20,10 +20,10 @@ import ILocationData from '../../interfaces/ILocationData';
     MatCardModule,
     MatTableModule
   ],
-  templateUrl: './daily-weather.component.html',
-  styleUrl: './daily-weather.component.scss'
+  templateUrl: './daily-weather-card.component.html',
+  styleUrl: './daily-weather-card.component.scss'
 })
-export class DailyWeatherComponent {
+export class DailyWeatherCardComponent {
   current$: Observable<IWeatherData | null>;
   location$: Observable<ILocationData | null>;
   dataSource: { key: string, value: string | number }[] = [];

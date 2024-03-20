@@ -7,7 +7,7 @@ export async function fetchWeatherData(http: HttpClient, location: string, date:
   const { weatherApiKey, weatherApiUrl } = environment;
   const isDateToday = isToday(date);
   const jsonName = isDateToday ? 'forecast' : 'future';
-  const dayParam = isDateToday ? 'days=3' : `dt=${formatDateString(date)}`;
+  const dayParam = isDateToday ? 'days=4' : `dt=${formatDateString(date)}`;
 
   return http.get<IWeatherFetchResponse>(
     `${weatherApiUrl}/${jsonName}.json?key=${weatherApiKey}&q=${location}&${dayParam}`

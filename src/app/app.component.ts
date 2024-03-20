@@ -11,7 +11,8 @@ import { selectErrorMessage, selectIsLoading } from './store/weather.selectors';
 import IWeatherStore from '../interfaces/IWeatherStore';
 
 import { LocationFormComponent } from './location-form/location-form.component';
-import { DailyWeatherComponent } from './daily-weather/daily-weather.component';
+import { DailyWeatherCardComponent } from './daily-weather-card/daily-weather-card.component';
+import { ForecastComponent } from './forecast/forecast.component';
 
 @Component({
   selector: 'app-root',
@@ -20,9 +21,10 @@ import { DailyWeatherComponent } from './daily-weather/daily-weather.component';
     AsyncPipe,
     NgIf,
     RouterOutlet,
+    MatProgressSpinnerModule,
     LocationFormComponent,
-    DailyWeatherComponent,
-    MatProgressSpinnerModule
+    DailyWeatherCardComponent,
+    ForecastComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

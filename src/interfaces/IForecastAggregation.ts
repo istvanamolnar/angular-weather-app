@@ -1,6 +1,6 @@
 import IWeatherData from './IWeatherData';
 
-export interface IForecastWeatherData {
+export default interface IForecastAggregation {
   morning: IWeatherData;
   afternoon: IWeatherData;
   evening: IWeatherData;

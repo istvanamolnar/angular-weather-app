@@ -1,5 +1,6 @@
 import IWeatherStore from '../../interfaces/IWeatherStore';
 import IWeatherData from '../../interfaces/IWeatherData';
+import IForecastData from '../../interfaces/IForecastData';
 
 export const selectIsLoading = (store: {weatherData: IWeatherStore}): boolean => {
   return !!store.weatherData.fetchingState?.isLoading;
@@ -7,7 +8,7 @@ export const selectIsLoading = (store: {weatherData: IWeatherStore}): boolean =>
 export const selectCurrent = (store: {weatherData: IWeatherStore}): IWeatherData | null => {
   return store.weatherData.current;
 };
-export const selectForecast = (store: IWeatherStore) => store.forecast;
+export const selectForecast = (store: {weatherData: IWeatherStore}): IForecastData | null => store.weatherData.forecast;
 export const selectLocation = (store: {weatherData: IWeatherStore}) => store.weatherData.location;
 
 export const selectErrorMessage = (store: {weatherData: IWeatherStore}): string | null => {
