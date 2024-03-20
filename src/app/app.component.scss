@@ -12,6 +12,8 @@
     position: relative;
     margin-top: 80px;
     margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
 
     width: min(600px, 80%);
     opacity: 0.8;
@@ -37,5 +39,7 @@
   h1 {
     z-index: 1;
   }
-
+  .daily-weather {
+    flex: 1;
+  }
 }

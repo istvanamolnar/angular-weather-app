@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { formatDate } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { formatDate } from '@angular/common';
+
 import { createDateValidator } from '../../utils/date-validator';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { fetchWeatherData } from '../../services/fetch-weather-data';
+
+import { setIsLoading, setWeatherData } from '../store/weather.actions';
 
 @Component({
   selector: 'app-location-form',
@@ -26,7 +31,10 @@ import { fetchWeatherData } from '../../services/fetch-weather-data';
 
 export class LocationFormComponent {
   // @ViewChild('f') form: NgForm = new NgForm([], []);
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private store: Store
+  ) {}
 
   dateAsString = formatDate(new Date(), 'dd.MM.yyyy', 'en');
 
@@ -38,9 +46,13 @@ export class LocationFormComponent {
   onSubmit = async () => {
     if (this.formData.valid) {
       const { date, location } = this.formData.value;
+
+      this.store.dispatch(setIsLoading({ isLoading: true }));
+
       (await fetchWeatherData(this.http, location, date))
         .subscribe(res => {
-          console.log(res);
+          console.log(JSON.stringify(res.location));
+          this.store.dispatch(setWeatherData(res));
         });
     }
   }

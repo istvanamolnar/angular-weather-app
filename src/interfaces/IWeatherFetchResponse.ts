@@ -2,11 +2,11 @@ import ILocationData from './ILocationData';
 import IWeatherData from './IWeatherData';
 
 export default interface IWeatherFetchResponse {
-  current: IWeatherData,
+  current: IWeatherData | null,
   forecast: {
     forecastday: {
       hour: IWeatherData[];
     }
-  },
-  location: ILocationData;
+  } | null,
+  location: ILocationData | null;
 }

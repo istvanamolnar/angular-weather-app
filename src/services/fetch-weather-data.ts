@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { formatDateString, isToday } from '../utils/date-formatting';
-import IWeatherFetchResponse from '../interfaces/IWeatherForecastResponse';
+import IWeatherFetchResponse from '../interfaces/IWeatherFetchResponse';
 
 export async function fetchWeatherData(http: HttpClient, location: string, date: string) {
   const { weatherApiKey, weatherApiUrl } = environment;

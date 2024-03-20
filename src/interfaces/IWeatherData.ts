@@ -5,4 +5,8 @@ export default interface IWeatherData {
   wind_dir: string;
   cloud: number;
   precip_mm: number;
+  condition: {
+    text: string;
+    icon: string;
+  };
 }
