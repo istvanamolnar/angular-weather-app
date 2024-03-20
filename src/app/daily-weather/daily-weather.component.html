@@ -1,0 +1,29 @@
+<div class="daily-weather-container">
+  <mat-spinner *ngIf="isLoading$ | async" class="spinner"></mat-spinner>
+  <mat-card *ngIf="current$ | async as c" class="card">
+    <mat-card-header *ngIf="location$ | async as l">
+      <mat-card-title>{{l.name}}</mat-card-title>
+      <mat-card-subtitle>{{l.region}}, {{l.country}}</mat-card-subtitle>
+      <mat-card-subtitle>Timezone: {{l.tz_id}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="content">
+      <div class="condition">
+        <img [src]="c.condition.icon" [alt]="c.condition.text" class="icon"/>
+        <h3 class="text">{{c.condition.text}}</h3>
+      </div>
+    </mat-card-content>
+    <mat-card-content>
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="key">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"> {{element.key}} </td>
+        </ng-container>
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+        </ng-container>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

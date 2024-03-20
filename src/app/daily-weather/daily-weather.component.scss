@@ -1,0 +1,29 @@
+.daily-weather-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max(49%, 250px);
+
+  .card {
+    box-shadow: none;
+    border: 1px solid #efefef;
+    border-radius: 20px;
+    .content {
+      .condition {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        .icon {
+          margin: auto;
+          width: 75%;
+          aspect-ratio: 1 / 1;
+        }
+        .text {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
