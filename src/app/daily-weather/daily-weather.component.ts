@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Store, select } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 
 import IWeatherData from '../../interfaces/IWeatherData';
-import { selectCurrent, selectIsLoading, selectLocation } from '../store/weather.selectors';
+import { selectCurrent, selectLocation } from '../store/weather.selectors';
 import IWeatherStore from '../../interfaces/IWeatherStore';
 import ILocationData from '../../interfaces/ILocationData';
 
@@ -18,7 +17,6 @@ import ILocationData from '../../interfaces/ILocationData';
   imports: [
     AsyncPipe,
     NgIf,
-    MatProgressSpinnerModule,
     MatCardModule,
     MatTableModule
   ],
@@ -28,14 +26,12 @@ import ILocationData from '../../interfaces/ILocationData';
 export class DailyWeatherComponent {
   current$: Observable<IWeatherData | null>;
   location$: Observable<ILocationData | null>;
-  isLoading$: Observable<boolean>;
   dataSource: { key: string, value: string | number }[] = [];
   displayedColumns: string[] = ['key', 'value'];
 
   constructor(private store: Store<{ weatherData: IWeatherStore }>) {
     this.current$ = this.store.pipe(select(selectCurrent));
     this.location$ = this.store.pipe(select(selectLocation));
-    this.isLoading$ = this.store.pipe(select(selectIsLoading));
     this.current$.subscribe(data => {
       this.dataSource = this.formatTable(data);
     });

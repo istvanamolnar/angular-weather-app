@@ -10,6 +10,10 @@ export const selectCurrent = (store: {weatherData: IWeatherStore}): IWeatherData
 export const selectForecast = (store: IWeatherStore) => store.forecast;
 export const selectLocation = (store: {weatherData: IWeatherStore}) => store.weatherData.location;
 
+export const selectErrorMessage = (store: {weatherData: IWeatherStore}): string | null => {
+  return store.weatherData.fetchingState ? store.weatherData.fetchingState.errorMessage : null;
+}
+
 // export const weatherDataSelector = createSelector(
 //   selectIsLoading,
 //   selectCurrent,

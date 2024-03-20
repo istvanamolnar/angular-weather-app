@@ -11,7 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { createDateValidator } from '../../utils/date-validator';
 import { fetchWeatherData } from '../../services/fetch-weather-data';
 
-import { setIsLoading, setWeatherData } from '../store/weather.actions';
+import { setErrorMessage, setIsLoading, setWeatherData } from '../store/weather.actions';
+import { error } from 'console';
 
 @Component({
   selector: 'app-location-form',
@@ -50,9 +51,15 @@ export class LocationFormComponent {
       this.store.dispatch(setIsLoading({ isLoading: true }));
 
       (await fetchWeatherData(this.http, location, date))
-        .subscribe(res => {
-          console.log(JSON.stringify(res.location));
-          this.store.dispatch(setWeatherData(res));
+        .subscribe({
+          next: (res) => {
+            console.log(JSON.stringify(res.location));
+            
+            this.store.dispatch(setWeatherData(res));
+          },
+          error: (e) => {
+            this.store.dispatch(setErrorMessage(e.error.error));
+          }
         });
     }
   }
