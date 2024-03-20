@@ -12,7 +12,7 @@ import IWeatherStore from '../interfaces/IWeatherStore';
 
 import { LocationFormComponent } from './location-form/location-form.component';
 import { DailyWeatherCardComponent } from './daily-weather-card/daily-weather-card.component';
-import { ForecastComponent } from './forecast/forecast.component';
+import { ForecastCardComponent } from './forecast-card/forecast-card.component';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,7 @@ import { ForecastComponent } from './forecast/forecast.component';
     MatProgressSpinnerModule,
     LocationFormComponent,
     DailyWeatherCardComponent,
-    ForecastComponent
+    ForecastCardComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

@@ -52,7 +52,7 @@ export class LocationFormComponent {
       (await fetchWeatherData(this.http, location, date))
         .subscribe({
           next: (res) => {
-            console.log(JSON.stringify(res.forecast));
+            console.log(res.forecast);
 
             this.store.dispatch(setWeatherData(res));
           },

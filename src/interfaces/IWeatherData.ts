@@ -9,4 +9,5 @@ export default interface IWeatherData {
     text: string;
     icon: string;
   };
+  time?: string;
 }

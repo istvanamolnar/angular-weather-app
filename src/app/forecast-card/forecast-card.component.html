@@ -1,0 +1,3 @@
+<mat-accordion *ngIf="forecastDays" multi>
+  <forecast-item *ngFor="let forecastDay of forecastDays;" [forecastDay]="forecastDay"></forecast-item>
+</mat-accordion>
