@@ -1,21 +1,16 @@
-import { Component } from '@angular/core';
-import { AsyncPipe, NgIf } from '@angular/common';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 
 import IWeatherData from '../../interfaces/IWeatherData';
-import { selectCurrent, selectLocation } from '../store/weather.selectors';
-import IWeatherStore from '../../interfaces/IWeatherStore';
 import ILocationData from '../../interfaces/ILocationData';
 
 @Component({
   selector: 'daily-weather-card',
   standalone: true,
   imports: [
-    AsyncPipe,
     NgIf,
     MatCardModule,
     MatTableModule
@@ -23,18 +18,16 @@ import ILocationData from '../../interfaces/ILocationData';
   templateUrl: './daily-weather-card.component.html',
   styleUrl: './daily-weather-card.component.scss'
 })
-export class DailyWeatherCardComponent {
-  current$: Observable<IWeatherData | null>;
-  location$: Observable<ILocationData | null>;
+
+export class DailyWeatherCardComponent implements OnInit {
+  @Input() current!: IWeatherData | null;
+  @Input() location!: ILocationData | null;
+  @Input() title!: string | null;
   dataSource: { key: string, value: string | number }[] = [];
   displayedColumns: string[] = ['key', 'value'];
 
-  constructor(private store: Store<{ weatherData: IWeatherStore }>) {
-    this.current$ = this.store.pipe(select(selectCurrent));
-    this.location$ = this.store.pipe(select(selectLocation));
-    this.current$.subscribe(data => {
-      this.dataSource = this.formatTable(data);
-    });
+  ngOnInit(): void {
+    this.dataSource = this.formatTable(this.current);
   }
 
   formatTable = (data: IWeatherData | null): { key: string, value: string | number }[] => {

@@ -1,16 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 import { MatExpansionModule } from '@angular/material/expansion';
 
-import IForecastData from '../../interfaces/IForecastData';
 import IWeatherData from '../../interfaces/IWeatherData';
 import IForecastAggregation from '../../interfaces/IForecastAggregation';
+import { DailyWeatherCardComponent } from '../daily-weather-card/daily-weather-card.component';
 
 @Component({
   selector: 'forecast-item',
   standalone: true,
   imports: [
-    MatExpansionModule
+    DailyWeatherCardComponent,
+    MatExpansionModule,
+    NgIf
   ],
   templateUrl: './forecast-item.component.html',
   styleUrl: './forecast-item.component.scss'

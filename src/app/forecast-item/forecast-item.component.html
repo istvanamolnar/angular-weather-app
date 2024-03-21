@@ -1,8 +1,35 @@
-<mat-expansion-panel expanded hideToggle>
+<mat-expansion-panel>
   <mat-expansion-panel-header>
-    <mat-panel-title>
-      {{date}}
-    </mat-panel-title>
+    <mat-panel-title>{{date}}</mat-panel-title>
   </mat-expansion-panel-header>
-  content
+
+  <mat-accordion>
+    <mat-expansion-panel *ngIf="averagedForecast.morning">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Morning:</mat-panel-title>
+      </mat-expansion-panel-header>
+      <daily-weather-card class="daily-weather" [current]="averagedForecast.morning"/>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel *ngIf="averagedForecast.afternoon">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Afternoon:</mat-panel-title>
+      </mat-expansion-panel-header>
+      <daily-weather-card class="daily-weather" [current]="averagedForecast.afternoon"/>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel *ngIf="averagedForecast.evening">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Evening:</mat-panel-title>
+      </mat-expansion-panel-header>
+      <daily-weather-card class="daily-weather" [current]="averagedForecast.evening"/>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel *ngIf="averagedForecast.night">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Night:</mat-panel-title>
+      </mat-expansion-panel-header>
+      <daily-weather-card class="daily-weather" [current]="averagedForecast.night"/>
+    </mat-expansion-panel>
+  </mat-accordion>
 </mat-expansion-panel>

@@ -4,8 +4,8 @@
     <location-form class="location-form"/>
     <mat-spinner *ngIf="isLoading$ | async" class="spinner"></mat-spinner>
     <div *ngIf="errorMessage$ | async" class="error-message">{{errorMessage$ | async}}</div>
-    <div class="cards-holder">
-      <daily-weather-card class="daily-weather"/>
+    <div *ngIf="current$ | async" class="cards-holder">
+      <daily-weather-card class="daily-weather" title="Current Weather:" [location]="location$ | async" [current]="current$ | async"/>
       <forecast-card class="forecasts"/>
     </div>
   </div>

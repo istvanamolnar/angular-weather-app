@@ -6,9 +6,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectErrorMessage, selectIsLoading } from './store/weather.selectors';
+import { selectCurrent, selectErrorMessage, selectIsLoading, selectLocation } from './store/weather.selectors';
 
 import IWeatherStore from '../interfaces/IWeatherStore';
+import IWeatherData from '../interfaces/IWeatherData';
+import ILocationData from '../interfaces/ILocationData';
 
 import { LocationFormComponent } from './location-form/location-form.component';
 import { DailyWeatherCardComponent } from './daily-weather-card/daily-weather-card.component';
@@ -32,9 +34,13 @@ import { ForecastCardComponent } from './forecast-card/forecast-card.component';
 export class AppComponent {
   isLoading$: Observable<boolean>;
   errorMessage$: Observable<string | null>;
+  current$: Observable<IWeatherData | null>;
+  location$: Observable<ILocationData | null>;
 
   constructor(private store: Store<{ weatherData: IWeatherStore }>) {
     this.isLoading$ = this.store.pipe(select(selectIsLoading));
     this.errorMessage$ = this.store.pipe(select(selectErrorMessage));
+    this.current$ = this.store.pipe(select(selectCurrent));
+    this.location$ = this.store.pipe(select(selectLocation));
   }
 }
