@@ -9,11 +9,11 @@
 
     .inputs {
       display: flex;
+      flex-direction: column;
       gap: 10px;
-      flex-wrap: wrap;
 
       .formField {
-        width: max(49%, 250px);
+        width: max(100%, 350px);
         opacity: 1;
       }
     }

@@ -1,6 +1,5 @@
 <main class="main">
   <div class="app-wrapper">
-    <h1>Weather App</h1>
     <location-form class="location-form"/>
     <mat-spinner *ngIf="isLoading$ | async" class="spinner"></mat-spinner>
     <div *ngIf="errorMessage$ | async" class="error-message">{{errorMessage$ | async}}</div>

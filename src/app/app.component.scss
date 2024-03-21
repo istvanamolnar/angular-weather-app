@@ -13,16 +13,16 @@
     margin-top: 80px;
     margin-bottom: 80px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     overflow-y: auto;
     gap: 5px;
 
-    width: min(600px, 80%);
+    width: max(75%, 350px);
     opacity: 0.8;
     z-index: 1;
   }
   .location-form {
-    width: 100%;
+    width: 33%;
   }
   .background-image-holder {
     background-image: url('https://raw.githubusercontent.com/arena-challenges/angular-weather-app/main/docs/weather-app-angular_small.png');
@@ -50,15 +50,18 @@
     color: red;
     font-size: 1.5em;
     font-weight: bold;
-    width: max(80%, 250px);
+    width: max(75%, 350px);
     margin: 20px auto;
   }
   .cards-holder {
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
+    width: max(65%, 350px);
+    margin-left: 20px;
     .daily-weather,
     .forecasts {
-      width: max(50%, 250px);
+      width: max(45%, 350px);
     }
   }
 }
