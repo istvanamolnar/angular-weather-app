@@ -1,11 +1,10 @@
-export function isToday(date: string): boolean {
+export function isToday(date: Date): boolean {
   const today = new Date();
-  const givenDate = new Date(formatDateString(date));
-  return givenDate.getDate() === today.getDate()
-    && givenDate.getMonth() === today.getMonth()
-    && givenDate.getFullYear() === today.getFullYear();
+  return date.getDate() === today.getDate()
+    && date.getMonth() === today.getMonth()
+    && date.getFullYear() === today.getFullYear();
 }
 
-export function formatDateString(date: string): string {
-  return date.split('.').reverse().join('-');
+export function formatDateString(date: Date): string {
+  return date.toISOString().split('T')[0];
 }

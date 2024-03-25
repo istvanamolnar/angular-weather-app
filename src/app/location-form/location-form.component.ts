@@ -7,6 +7,8 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 import { createDateValidator } from '../../utils/date-validator';
 import { fetchWeatherData } from '../../services/fetch-weather-data';
@@ -20,11 +22,13 @@ import { setErrorMessage, setIsLoading, setWeatherData } from '../store/weather.
     FormsModule,
     HttpClientModule,
     MatButtonModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
     MatLabel,
     ReactiveFormsModule
   ],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './location-form.component.html',
   styleUrl: './location-form.component.scss'
 })
@@ -36,11 +40,9 @@ export class LocationFormComponent {
     private store: Store
   ) {}
 
-  dateAsString = formatDate(new Date(), 'dd.MM.yyyy', 'en');
-
   formData: FormGroup = new FormGroup({
     location: new FormControl('', Validators.required),
-    date: new FormControl(this.dateAsString, [Validators.required, createDateValidator()]),
+    date: new FormControl(new Date(), [Validators.required, createDateValidator()]),
   });
 
   onSubmit = async () => {
