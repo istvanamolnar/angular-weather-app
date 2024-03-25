@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 
 import IWeatherData from '../../interfaces/IWeatherData';
 import ILocationData from '../../interfaces/ILocationData';
@@ -49,6 +49,15 @@ export class DailyWeatherCardComponent implements OnInit {
             break;
           case 'cloud':
             dataSource.push({ key: 'Cloud Coverage', value: `${data.cloud} %` });
+            break;
+          case 'avgtemp_c':
+            dataSource.push({ key: 'Average Temperature', value: `${Math.round(data.avgtemp_c || 0)} °C` });
+            break;
+          case 'avgvis_km':
+            dataSource.push({ key: 'Average Wind Speed', value: `${data.avgvis_km} km/h` });
+            break;
+          case 'totalprecip_mm':
+            dataSource.push({ key: 'Total Percipitation', value: `${data.totalprecip_mm} mm` });
             break;
           default:
             break;

@@ -71,9 +71,7 @@ export class LocationFormComponent implements OnInit {
   
   }
 
-  onLocationReset = (formData: any) => {
-    console.log(formData);
-    
+  onLocationReset = () => {
     this.formData.get('location')?.reset('');
   }
 
@@ -86,7 +84,17 @@ export class LocationFormComponent implements OnInit {
       (await fetchWeatherData(this.http, location, date))
         .subscribe({
           next: (res) => {
-            this.store.dispatch(setWeatherData(res));
+            if (res.current) {
+              this.store.dispatch(setWeatherData(res));
+            } else {
+              this.store.dispatch(
+                setWeatherData({
+                  current: res.forecast?.forecastday[0].day || null,
+                  location: res.location,
+                  forecast: res.forecast
+                })
+              );
+            }
           },
           error: (e) => {
             this.store.dispatch(setErrorMessage(e.error.error));
