@@ -1,21 +1,10 @@
 .locationInputWrapper {
-  margin: 10px auto 20px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 
   .form {
-    gap: 10px;
-
     .inputs {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 10px;
-
-      .formField {
-        width: max(100%, 350px);
-        opacity: 1;
-      }
     }
   }
 }

@@ -1,29 +1,18 @@
-
 .main {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  
+
   .app-wrapper {
     background-color: #fff;
-    border-radius: 20px;
-    padding: 40px;
-    position: relative;
-    margin-top: 80px;
-    margin-bottom: 80px;
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: auto;
-    gap: 5px;
-
-    width: max(75%, 350px);
+    border-radius: 10px;
+    margin: 20px auto;
     opacity: 0.8;
-    z-index: 1;
+    overflow-y: auto;
+    width: min(1200px, 80%);
+    max-height: calc(100vh - 80px);
+    padding: 20px;
   }
-  .location-form {
-    width: 33%;
-  }
+
+  .location-form {}
+
   .background-image-holder {
     background-image: url('https://raw.githubusercontent.com/arena-challenges/angular-weather-app/main/docs/weather-app-angular_small.png');
     background-size: cover;
@@ -35,13 +24,11 @@
     left: 50%;
     opacity: 0.6;
     transform: translate(-50%, -50%);
-    z-index: 0;
+    z-index: -1;
   }
 
-  h1 {
-    z-index: 1;
-  }
-  
+  h1 {}
+
   .spinner {
     margin: auto;
   }
@@ -56,12 +43,13 @@
   .cards-holder {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    width: max(65%, 350px);
-    margin-left: 20px;
+    gap: 20px;
+    margin: 20px auto;
+    width: min(1200px, 100%);
+
     .daily-weather,
     .forecasts {
-      width: max(45%, 350px);
+      flex-grow: 1;
     }
   }
 }

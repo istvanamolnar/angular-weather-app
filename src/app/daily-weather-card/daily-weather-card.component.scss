@@ -1,24 +1,19 @@
 .daily-weather-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
 
   .card {
     box-shadow: none;
     border: 1px solid #efefef;
-    border-radius: 20px;
     width: 100%;
+
     .content {
       .condition {
         width: 100%;
         display: flex;
-        justify-content: center;
         flex-direction: column;
+        align-items: center;
 
         .icon {
-          margin: auto;
-          width: 65%;
+          width: 50%;
           aspect-ratio: 1 / 1;
         }
         .text {
