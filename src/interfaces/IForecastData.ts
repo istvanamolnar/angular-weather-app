@@ -4,5 +4,6 @@ export default interface IForecastData {
   forecastday: {
     date: string;
     hour: IWeatherData[];
+    day: IWeatherData;
   }[]
 }

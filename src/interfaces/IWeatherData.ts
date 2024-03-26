@@ -10,4 +10,8 @@ export default interface IWeatherData {
     icon: string;
   };
   time?: string;
+
+  avgtemp_c?: number;
+  avgvis_km?: number;
+  totalprecip_mm?: number;
 }

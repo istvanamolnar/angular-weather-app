@@ -95,7 +95,7 @@ export class ForecastItemComponent implements OnInit {
           averaged[key] = this.getAverage(data, key);
           break;
         case 'precip_mm':
-          averaged[key] = this.getAverage(data, key);
+          averaged[key] = this.getSum(data, key);
           break;
         case 'condition':
           averaged[key] = data[0] ? data[0][key] : { icon: '', text: '' };
@@ -107,10 +107,14 @@ export class ForecastItemComponent implements OnInit {
     return averaged;
   }
 
-  getAverage(data: IWeatherData[], key: keyof IWeatherData) {
+  getAverage(data: IWeatherData[], key: keyof IWeatherData): number {
     const sum = data.reduce((acc, curr) => acc + (curr[key] as number), 0);
     const average = sum / (data.length || 1);
     const roundedAv = Math.round(average);
     return roundedAv;
+  }
+  getSum(data: IWeatherData[], key: keyof IWeatherData): number {
+    const sum = data.reduce((acc, curr) => acc + (curr[key] as number), 0);
+    return Math.round(sum * 100) / 100;
   }
 }

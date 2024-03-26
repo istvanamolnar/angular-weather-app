@@ -3,7 +3,7 @@ import { environment } from '../environments/environment';
 import { formatDateString, isToday } from '../utils/date-formatting';
 import IWeatherFetchResponse from '../interfaces/IWeatherFetchResponse';
 
-export async function fetchWeatherData(http: HttpClient, location: string, date: string) {
+export async function fetchWeatherData(http: HttpClient, location: string, date: Date) {
   const { weatherApiKey, weatherApiUrl } = environment;
   const isDateToday = isToday(date);
   const jsonName = isDateToday ? 'forecast' : 'future';
